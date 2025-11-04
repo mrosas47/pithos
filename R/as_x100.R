@@ -1,0 +1,27 @@
+#' Scale a value to a percentage-like factor of another total
+#'
+#' @description
+#' Computes a normalized percentage-style value by multiplying `x` by 100,
+#' dividing by `t`, and rounding to `d` decimal places.
+#' This is a compact helper to express values as “x per 100 of t”.
+#'
+#' @param x Numeric vector of values to scale.
+#' @param t Numeric scalar or vector representing the total or denominator.
+#'   Must be of compatible length with `x` (recycled if length 1).
+#' @param d Integer; number of decimal digits to round to (default `2`).
+#'
+#' @return
+#' A numeric vector of the same length as `x`, representing the scaled
+#' value as `x * 100 / t`, rounded to `d` digits.
+#'
+#' @examples
+#' \dontrun{
+#' pndr.as_x100(25, 200)    # → 12.5
+#' pndr.as_x100(c(5, 10), 40, d = 1)
+#' }
+#'
+#' @export
+pndr.as_x100 <- function(x, t, d = 2) {
+  p <- as.numeric(round(x * 100 / t, digits = d))
+  p
+}
